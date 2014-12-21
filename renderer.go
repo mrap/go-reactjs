@@ -1,4 +1,4 @@
-package main
+package renderer
 
 import (
 	"io/ioutil"
@@ -10,10 +10,18 @@ type renderer struct {
 	*otto.Otto
 }
 
+type RendererDefaults []string
+
+var SharedDefaults = RendererDefaults{
+	"assets/global.js",
+	"assets/react.js",
+}
+
 func newRenderer(files []string) *renderer {
 	r := &renderer{otto.New()}
-	r.runFile("assets/global.js")
-	r.runFile("assets/react.js")
+	for _, f := range SharedDefaults {
+		r.runFile(f)
+	}
 	r.runFiles(files)
 	return r
 }
