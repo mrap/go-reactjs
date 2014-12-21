@@ -13,6 +13,13 @@ func ExampleDemo1() {
 	fmt.Println(v)
 }
 
+func ExampleHelperDemo1() {
+	// Output: <div class="commentBox" data-reactid=".2beudqbmdae" data-react-checksum="-1813045546">Hello, world! I am a CommentBox.</div>
+	v := NewRenderer([]string{"assets/demo1.js"}).
+		RenderComponent("CommentBox", "{}")
+	fmt.Println(v)
+}
+
 func ExampleDemo2() {
 	// Output: <p data-reactid=".12tizqr23xb" data-react-checksum="1539392754"><span data-reactid=".12tizqr23xb.0">Hello, </span><input type="text" placeholder="Your name here" data-reactid=".12tizqr23xb.1"><span data-reactid=".12tizqr23xb.2">!</span></p>
 	v := NewRenderer([]string{"assets/demo2.js"}).

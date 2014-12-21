@@ -1,6 +1,7 @@
 package renderer
 
 import (
+	"fmt"
 	"io/ioutil"
 
 	"github.com/robertkrimen/otto"
@@ -15,6 +16,10 @@ type RendererDefaults []string
 var SharedDefaults = RendererDefaults{
 	"assets/global.js",
 	"assets/react.js",
+}
+
+func (r *renderer) RenderComponent(name, props string) otto.Value {
+	return r.RunCmd(fmt.Sprintf("React.renderToString(React.createElement(%s, %s));", name, props))
 }
 
 func NewRenderer(files []string) *renderer {
