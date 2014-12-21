@@ -17,7 +17,7 @@ var SharedDefaults = RendererDefaults{
 	"assets/react.js",
 }
 
-func newRenderer(files []string) *renderer {
+func NewRenderer(files []string) *renderer {
 	r := &renderer{otto.New()}
 	for _, f := range SharedDefaults {
 		r.runFile(f)
@@ -26,7 +26,7 @@ func newRenderer(files []string) *renderer {
 	return r
 }
 
-func (r *renderer) runCmd(cmd string) otto.Value {
+func (r *renderer) RunCmd(cmd string) otto.Value {
 	v, err := r.Run(cmd)
 	if err != nil {
 		panic(err)
